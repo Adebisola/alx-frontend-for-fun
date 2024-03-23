@@ -442,3 +442,65 @@ class Welcome extends React.Component {
     );
   }
 };
+
+
+//Review Using Props with Stateless Functional Components
+{/* A stateless functional component is any function you write which accepts props and returns JSX.*/}
+{/**A stateless component, on the other hand, is a class that extends React.Component but does not use internal state */}
+{/**a stateful component is a class component that does maintain its own internal state. */}
+
+
+class CampSite extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <Camper/>
+      </div>
+    );
+  }
+};
+
+// Change code below this line
+const Camper = (props) => {
+  return (
+    <div>
+      <p>{props.name}</p>
+    </div>
+  )
+
+  }
+
+
+Camper.defaultProps = {name: "CamperBot"}
+Camper.propTypes = { name: PropTypes.string.isRequired }
+
+
+//Create a Stateful Component
+{/**State consists of any data your application needs to know about, that can change over time. You want your apps to respond to state changes and present an updated UI when necessary. React offers a nice solution for the state management of modern web applications.
+Note that you must create a class component by extending React.Component in order to create state like this.
+*/
+//The state property must be set to a JavaScript object
+}
+class StatefulComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    // Only change code below this line
+        this.state = {
+          firstName:"Moses"
+        }
+    // Only change code above this line
+  }
+  render() {
+    return (
+      <div>
+        <h1>{this.state.firstName}</h1>
+      </div>
+    );
+  }
+};
+
+
+//Render State in the User Interface
