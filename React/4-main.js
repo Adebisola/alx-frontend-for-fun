@@ -481,6 +481,7 @@ Camper.propTypes = { name: PropTypes.string.isRequired }
 //Create a Stateful Component
 {/**State consists of any data your application needs to know about, that can change over time. You want your apps to respond to state changes and present an updated UI when necessary. React offers a nice solution for the state management of modern web applications.
 Note that you must create a class component by extending React.Component in order to create state like this.
+state is one of the most powerful features of components in React. State allows you to track important data in your app and render a UI in response to changes in this data. If your data changes, your UI will change.
 */
 //The state property must be set to a JavaScript object
 }
@@ -504,3 +505,202 @@ class StatefulComponent extends React.Component {
 
 
 //Render State in the User Interface
+class MyComponent__ extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: 'freeCodeCamp',
+      description: "I love freeCodeCamp"
+    }
+  }
+  render() {
+    return (
+      <div>
+        { /* Change code below this line */ }
+        <h1>{this.state.name}</h1>
+
+        { /* Change code above this line */ }
+      </div>
+    );
+  }
+};
+
+
+//Render State in the User Interface Another Way
+{/**In the render() method, before the return statement, you can write JavaScript directly. For example, you could declare functions, access data from state or props, perform computations on this data, and so on. Then, you can assign any data to variables, which you have access to in the return statement. */}
+
+class MyComponent___ extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: 'freeCodeCamp'
+    }
+  }
+  render() {
+    // Change code below this line
+const name = this.state.name;
+    // Change code above this line
+    return (
+      <div>
+        { /* Change code below this line */ }
+        <h1>{name}</h1>
+        { /* Change code above this line */ }
+      </div>
+    );
+  }
+};
+
+
+//Set State with this.setState
+
+class MyFirstComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: 'Initial State'
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick() {
+    // Change code below this line
+          this.setState({
+            name: "React Rocks!"
+          });
+    // Change code above this line
+  }
+  render() {
+    return (
+      <div>
+        <button onClick={this.handleClick}>Click Me</button>
+        <h1>{this.state.name}</h1>
+      </div>
+    );
+  }
+};
+
+
+//Bind 'this' to a Class Method
+
+class MyComponentThis extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      text: "Hello"
+    };
+    // Change code below this line
+this.handleClick = this.handleClick.bind(this)
+    // Change code above this line
+  }
+  handleClick() {
+    this.setState({
+      text: "You clicked!"
+    });
+  }
+  render() {
+    return (
+      <div>
+        { /* Change code below this line */ }
+        <button onClick={this.handleClick}>Click Me</button>
+        { /* Change code above this line */ }
+        <h1>{this.state.text}</h1>
+      </div>
+    );
+  }
+};
+
+//Use State to Toggle an Element
+
+class MyComponent___ extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      visibility: false
+    };
+    // Change code below this line
+       this.setState(state => ({
+      counter : state.counter + props.increment   
+       }))
+     
+    // Change code above this line
+    this.toggleVisibility = this.toggleVisibility.bind(this)
+  
+    // Change code above this line
+  }
+  // Change code below this line
+toggleVisibility() {
+    this.setState(state => {
+      if (state.visibility === true) {
+        return { visibility: false };
+      } else { 
+        return { visibility: true};
+      }
+      
+    });
+  }
+  // Change code above this line
+  render() {
+    if (this.state.visibility) {
+      return (
+        <div>
+          <button onClick={this.toggleVisibility}>Click Me</button>
+          <h1>Now you see me!</h1>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <button onClick={this.toggleVisibility}>Click Me</button>
+        </div>
+      );
+    }
+  }
+}
+
+
+//Write a Simple Counter
+
+class Counter extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0
+    };
+    // Change code below this line
+    this.increment = this.increment.bind(this)
+    this.decrement = this.decrement.bind(this)
+    this.reset = this.reset.bind(this)
+  
+    // Change code above this line
+  }
+  increment() {
+        this.setState(state => ({
+      count : state.count + 1  
+       }));
+    }
+    decrement() {
+        this.setState(state => ({
+      count : state.count - 1  
+       }));
+    }
+    reset() {
+        this.setState({
+          count: 0
+        });
+    }
+  // Change code below this line
+
+  // Change code above this line
+  render() {
+    return (
+      <div>
+        <button className='inc' onClick={this.increment}>Increment!</button>
+        <button className='dec' onClick={this.decrement}>Decrement!</button>
+        <button className='reset' onClick={this.reset}>Reset</button>
+        <h1>Current Count: {this.state.count}</h1>
+      </div>
+    );
+  }
+};
+
+
+//Create a Controlled Input

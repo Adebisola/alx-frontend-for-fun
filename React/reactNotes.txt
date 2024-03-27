@@ -16,3 +16,22 @@ When React encounters a custom HTML tag that references another component (a com
 The last challenge showed a simple way to compose two components, but there are many different ways you can compose components with React.
 
 Component composition is one of React's powerful features. When you work with React, it is important to start thinking about your user interface in terms of components like the App example in the last challenge. You break down your UI into its basic building blocks, and those pieces become the components. This helps to separate the code responsible for the UI from the code responsible for handling your application logic. It can greatly simplify the development and maintenance of complex projects.
+
+
+
+However, state updates may be asynchronous - this means React may batch multiple setState() calls into a single update. This means you can't rely on the previous value of this.state or this.props when calculating the next value. So, you should not use code like this:
+
+this.setState({
+  counter: this.state.counter + this.props.increment
+});
+Instead, you should pass setState a function that allows you to access state and props. Using a function with setState guarantees you are working with the most current values of state and props. This means that the above should be rewritten as:
+
+this.setState((state, props) => ({
+  counter: state.counter + props.increment
+}));
+You can also use a form without props if you need only the state:
+
+this.setState(state => ({
+  counter: state.counter + 1
+}));
+Note that you have to wrap the object literal in parentheses, otherwise JavaScript thinks it's a block of code.
