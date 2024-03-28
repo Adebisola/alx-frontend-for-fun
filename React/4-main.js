@@ -879,3 +879,48 @@ class RenderInput extends React.Component {
 
 
 //Use the Lifecycle Method componentWillMount
+{/**The componentWillMount() method is called before the render() method when a component is being mounted to the DOM. */}
+// console.log something to the console and see what happens
+class MyComponent1 extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  componentWillMount() {
+    // Change code below this line
+    var a = 5;
+console.log(a);
+console.log("A component is being mounted")
+    // Change code above this line
+  }
+  render() {
+    return <div />
+  }
+};
+
+
+//Use the Lifecycle Method componentDidMount
+{/**There is a mock API call in componentDidMount(). It sets state after 2.5 seconds to simulate calling a server to retrieve data. This example requests the current total active users for a site. In the render method, render the value of activeUsers in the h1 after the text Active Users:. Watch what happens in the preview, and feel free to change the timeout to see the different effects. */}
+class MyComponent2 extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeUsers: null
+    };
+  }
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({
+        activeUsers: 1273
+      });
+    }, 2500);
+  }
+  render() {
+    return (
+      <div>
+        {/* Change code below this line */}
+        <h1>Active Users: {this.state.activeUsers}</h1>
+        {/* Change code above this line */}
+      </div>
+    );
+  }
+}
