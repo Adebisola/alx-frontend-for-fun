@@ -15,7 +15,7 @@ function App() {
               <li>Watermelon</li>
               <li>Apples</li>
             </ul>
-          </div>    
+          </div>  
           
     </div>
   );
